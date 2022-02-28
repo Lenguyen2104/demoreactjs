@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import todos from "./TodoForm";
+import { TiDelete, TiEdit } from "react-icons/ti";
 
-function Todo() {
+function Todo({ todos, completeTodo, removeTodo }) {
   const [edit, setEdit] = useState({
     id: null,
     value: "",
   });
 
-  const completeTodo = (e) => {};
   return todos.map((todo, index) => (
     <div
       className={todo.isComplete ? "todo-row complete" : "todo-row"}
@@ -15,6 +14,13 @@ function Todo() {
     >
       <div key={todo.id} onClick={() => completeTodo(todo.id)}>
         {todo.text}
+      </div>
+      <div className="'icons">
+        <TiDelete onClick={() => removeTodo(todo.id)} className="delete-icon" />
+        <TiEdit
+          onClick={() => setEdit({ id: todo.id, value: todo.text })}
+          className="delete-icon"
+        />
       </div>
     </div>
   ));
